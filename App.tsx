@@ -761,9 +761,7 @@ export default function App() {
       <div className="animate-in fade-in zoom-in-95 duration-700">
         <nav className="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-slate-950/80 backdrop-blur-md border-b border-white/5">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-indigo-600 rounded-sm flex items-center justify-center text-white font-bold font-mono shadow-[0_0_15px_rgba(79,70,229,0.5)]">
-              H
-            </div>
+            <img src="/Hlabs-logo.jpg" alt="H Labs Logo" className="w-8 h-8 rounded-sm object-cover shadow-[0_0_15px_rgba(79,70,229,0.5)]" />
             <span className="font-bold text-lg tracking-tight">H Labs</span>
           </div>
 
