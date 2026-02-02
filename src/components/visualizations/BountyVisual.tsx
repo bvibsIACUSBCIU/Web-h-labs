@@ -9,12 +9,12 @@ const BountyVisual = () => (
                     <div className="w-10 h-10 bg-emerald-100/50 rounded flex items-center justify-center text-emerald-600">
                         <Coins size={20} />
                     </div>
-                    <div>
-                        <div className="text-slate-900 font-bold">Airdrop Task #102</div>
-                        <div className="text-xs text-emerald-600">ZkSync Era</div>
+                    <div className="min-w-0">
+                        <div className="text-slate-900 font-bold truncate">Airdrop Task #102</div>
+                        <div className="text-xs text-emerald-600 truncate">ZkSync Era</div>
                     </div>
                 </div>
-                <div className="text-slate-900 font-mono font-bold">$500+</div>
+                <div className="text-slate-900 font-mono font-bold shrink-0">$500+</div>
             </div>
             <div className="p-4 bg-slate-50 border border-slate-100 rounded-lg flex justify-between items-center opacity-70">
                 <div className="flex items-center gap-3">

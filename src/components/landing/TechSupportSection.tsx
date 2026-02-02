@@ -1,10 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Database, Building2, Flame, Check } from 'lucide-react';
-import { translations, Language } from '../../constants/translations';
 import { techSupportCategories } from '../../constants';
 
-const TechSupportSection = ({ lang }: { lang: Language }) => {
-    const t = translations[lang].tech_support;
+const TechSupportSection = () => {
+    const { t, i18n } = useTranslation();
 
     const getIcon = (iconName: string) => {
         const iconMap: { [key: string]: React.ComponentType<any> } = {
@@ -24,20 +24,22 @@ const TechSupportSection = ({ lang }: { lang: Language }) => {
         return colorMap[color] || colorMap['blue'];
     };
 
+    const isZh = i18n.language === 'zh';
+
     return (
         <div className="py-24 bg-white border-t border-slate-100 relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 relative z-10">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">{t.title}</h2>
-                    <p className="text-slate-500 text-sm">{t.subtitle}</p>
+                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">{t('tech_support.title')}</h2>
+                    <p className="text-slate-500 text-sm">{t('tech_support.subtitle')}</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-8">
                     {techSupportCategories.map((category) => {
                         const Icon = getIcon(category.icon);
                         const colors = getColorClasses(category.color);
-                        const title = lang === 'zh' ? category.title_zh : category.title_en;
-                        const desc = lang === 'zh' ? category.desc_zh : category.desc_en;
-                        const items = lang === 'zh' ? category.items_zh : category.items_en;
+                        const title = isZh ? category.title_zh : category.title_en;
+                        const desc = isZh ? category.desc_zh : category.desc_en;
+                        const items = isZh ? category.items_zh : category.items_en;
                         return (
                             <div key={category.id} className="bg-white border border-slate-200 p-6 rounded-xl hover:shadow-xl transition-all duration-300 group shadow-sm">
                                 <div className={`w-12 h-12 ${colors.bg} rounded-lg flex items-center justify-center ${colors.text} mb-6 group-hover:bg-opacity-80 transition-colors border ${colors.border}`}>

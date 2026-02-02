@@ -1,15 +1,23 @@
+import { TranslationSchema } from '../types';
+
 export type Language = 'en' | 'zh';
 
-export const translations = {
+export const translations: Record<Language, TranslationSchema> = {
     en: {
         nav: { services: "Modules", partners: "Partners", login: "Launch Terminal" },
         hero: {
             badge: "H LABS ECOSYSTEM OS v2.0",
-            title: "The Operating System for Web3 Growth.",
-            subtitle: "Integrated Intelligence, Traffic, Capital, and Task execution in one terminal.",
-            cta1: "Launch Terminal",
-            cta2: "View Documentation",
-            stats: { users: "Active Users", tvl: "Ecosystem TVL", tasks: "Tasks Completed", partners: "Partners" }
+            title: 'H-Labs Ecosystem OS',
+            subtitle: 'Trusted by 400+ partners. The definitive Web3 Growth Engine combining AI-driven analytics, global KOL networks, and automated bounty systems to scale your project from launch to dominance.',
+            buttons: {
+                primary: 'Launch Terminal',
+                secondary: 'View Demo'
+            },
+            stats: {
+                tvl: 'Total Value Locked',
+                volume: 'Trading Volume',
+                partners: 'Strategic Partners'
+            }
         },
         services_section: {
             title: "Venture Building Services",
@@ -84,11 +92,17 @@ export const translations = {
         nav: { services: "核心模块", partners: "合作伙伴", login: "启动终端" },
         hero: {
             badge: "H LABS 生态操作系统 v2.0",
-            title: "Web3 增长引擎操作系统",
-            subtitle: "集成情报作战室、流量矩阵、资金管理与任务执行的一站式终端。",
-            cta1: "启动终端",
-            cta2: "查看文档",
-            stats: { users: "活跃用户", tvl: "生态 TVL", tasks: "完成任务", partners: "合作伙伴" }
+            title: 'H-Labs 生态操作系统',
+            subtitle: '400+ 合作伙伴信赖。Web3 增长引擎，集成了 AI 驱动的分析、全球 KOL 网络和自动赏金系统，助您的项目从启动到主导市场。',
+            buttons: {
+                primary: '启动终端',
+                secondary: '查看演示'
+            },
+            stats: {
+                tvl: '总锁定价值',
+                volume: '交易量',
+                partners: '战略合作伙伴'
+            }
         },
         services_section: {
             title: "全生态孵化服务",

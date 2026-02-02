@@ -1,10 +1,10 @@
-import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Terminal, ArrowRight } from 'lucide-react';
 import ParticleSphere from '../ParticleSphere';
-import { translations, Language } from '../../constants/translations';
 
-const LandingHero = ({ onEnter, lang }: { onEnter: () => void, lang: Language }) => {
-    const t = translations[lang].hero;
+const LandingHero = ({ onEnter }: { onEnter: () => void }) => {
+    const { t } = useTranslation();
+
     return (
         <div className="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-4 overflow-hidden pt-32">
             {/* Dots Background */}
@@ -20,7 +20,7 @@ const LandingHero = ({ onEnter, lang }: { onEnter: () => void, lang: Language })
                 {/* Badge */}
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-50 border border-orange-200 text-orange-600 text-xs font-mono mb-6 animate-fade-in">
                     <Terminal size={12} />
-                    {t.badge}
+                    {t('hero.badge')}
                 </div>
 
                 {/* Title */}
@@ -30,7 +30,7 @@ const LandingHero = ({ onEnter, lang }: { onEnter: () => void, lang: Language })
 
                 {/* Subtitle - Elegant Italic */}
                 <p className="text-3xl md:text-4xl font-serif italic text-slate-500 max-w-3xl mx-auto leading-relaxed">
-                    {t.subtitle}
+                    {t('hero.subtitle')}
                 </p>
 
                 {/* CTA Buttons */}
@@ -39,18 +39,22 @@ const LandingHero = ({ onEnter, lang }: { onEnter: () => void, lang: Language })
                         onClick={onEnter}
                         className="group relative px-10 py-4 bg-orange-600 text-white font-medium rounded-sm hover:bg-orange-700 transition-all flex items-center gap-2 shadow-lg shadow-orange-500/20"
                     >
-                        {t.cta1}
+                        {t('hero.buttons.primary')}
                         <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                    </button>
+                    <button
+                        className="px-10 py-4 bg-white text-slate-600 font-medium rounded-sm border border-slate-200 hover:border-slate-300 hover:text-slate-900 transition-all shadow-sm"
+                    >
+                        {t('hero.buttons.secondary')}
                     </button>
                 </div>
 
                 {/* Stats Bar */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-12 pt-20 mt-12 w-full max-w-5xl mx-auto">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-12 pt-20 mt-12 w-full max-w-4xl mx-auto">
                     {[
-                        { label: t.stats.users, value: "12,500+" },
-                        { label: t.stats.tvl, value: "$240M+" },
-                        { label: t.stats.tasks, value: "450K+" },
-                        { label: t.stats.partners, value: "400+" },
+                        { label: t('hero.stats.tvl'), value: "$240M+" },
+                        { label: t('hero.stats.volume'), value: "$1.2B+" },
+                        { label: t('hero.stats.partners'), value: "400+" },
                     ].map((stat, i) => (
                         <div key={i} className="flex flex-col items-center gap-1 group cursor-default">
                             <span className="text-3xl md:text-4xl font-bold text-slate-900 font-sans tracking-tight group-hover:text-orange-600 transition-colors">{stat.value}</span>

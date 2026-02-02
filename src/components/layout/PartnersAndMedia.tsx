@@ -1,17 +1,16 @@
-import React from 'react';
-import { translations, Language } from '../../constants/translations';
+import { useTranslation } from 'react-i18next';
 import { strategicPartners, mediaPartners } from '../../constants';
 
-const PartnersAndMedia = ({ lang }: { lang: Language }) => {
-    const t = translations[lang].partners;
+const PartnersAndMedia = () => {
+    const { t } = useTranslation();
     return (
         <div className="py-24 border-t border-slate-100 bg-slate-50">
             <div className="max-w-7xl mx-auto px-6">
 
                 {/* Strategic Partners */}
                 <div className="mb-20 text-center">
-                    <h3 className="text-orange-600 font-bold mb-2">{t.subtitle}</h3>
-                    <h2 className="text-3xl font-bold text-slate-900 mb-12">{t.title}</h2>
+                    <h3 className="text-orange-600 font-bold mb-2">{t('partners.subtitle')}</h3>
+                    <h2 className="text-3xl font-bold text-slate-900 mb-12">{t('partners.title')}</h2>
                     <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
                         {strategicPartners.map((partner, i) => (
                             <div key={i} className="group flex items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer">
@@ -38,7 +37,7 @@ const PartnersAndMedia = ({ lang }: { lang: Language }) => {
 
                 {/* Media Partners */}
                 <div className="text-center pt-12 border-t border-slate-200">
-                    <h2 className="text-2xl font-bold text-slate-900 mb-10">{t.media_title}</h2>
+                    <h2 className="text-2xl font-bold text-slate-900 mb-10">{t('partners.media_title')}</h2>
                     <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
                         {mediaPartners.map((media, i) => (
                             <div key={i} className="group flex items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer">

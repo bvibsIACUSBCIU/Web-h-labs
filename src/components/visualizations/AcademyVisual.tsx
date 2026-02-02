@@ -11,7 +11,7 @@ const AcademyVisual = () => (
                 <h4 className="text-slate-400 text-xs uppercase mb-2">Current Course</h4>
                 <h3 className="text-xl font-bold text-slate-900">DeFi Advanced Strategies</h3>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[1, 2, 3, 4].map(i => (
                     <div key={i} className="bg-slate-50 p-3 rounded border border-slate-100 flex flex-col gap-2">
                         <div className="w-8 h-8 bg-blue-50 rounded flex items-center justify-center text-blue-500">

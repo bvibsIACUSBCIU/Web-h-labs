@@ -1,4 +1,94 @@
 
+export interface TranslationSchema {
+  nav: {
+    services: string;
+    partners: string;
+    login: string;
+  };
+  hero: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    buttons: {
+      primary: string;
+      secondary: string;
+    };
+    stats: {
+      tvl: string;
+      volume: string;
+      partners: string;
+    };
+  };
+  services_section: {
+    title: string;
+    subtitle: string;
+    tech: {
+      title: string;
+      desc: string;
+      tags: string[];
+    };
+    brand: {
+      title: string;
+      desc: string;
+      tags: string[];
+    };
+    media: {
+      title: string;
+      desc: string;
+      tags: string[];
+    };
+  };
+  features: {
+    war_room: {
+      title: string;
+      subtitle: string;
+      desc: string;
+      tags: string[];
+    };
+    kol: {
+      title: string;
+      subtitle: string;
+      desc: string;
+      tags: string[];
+    };
+    bounty: {
+      title: string;
+      subtitle: string;
+      desc: string;
+      tags: string[];
+    };
+    academy: {
+      title: string;
+      subtitle: string;
+      desc: string;
+      tags: string[];
+    };
+    fund: {
+      title: string;
+      subtitle: string;
+      desc: string;
+      tags: string[];
+    };
+  };
+  partners: {
+    title: string;
+    subtitle: string;
+    media_title: string;
+  };
+  footer: {
+    rights: string;
+    links: string[];
+  };
+  tech_support: {
+    title: string;
+    subtitle: string;
+  };
+  media_influence: {
+    title: string;
+    subtitle: string;
+  };
+}
+
 export interface TechCase {
   title: string;
   desc: string;
