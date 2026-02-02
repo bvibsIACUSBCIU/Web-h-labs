@@ -201,55 +201,62 @@ const translations = {
 
 // --- LANDING PAGE COMPONENTS ---
 
+// --- LANDING PAGE COMPONENTS ---
+
+import ParticleSphere from './components/ParticleSphere';
+
 const LandingHero = ({ onEnter, lang }: { onEnter: () => void, lang: Language }) => {
   const t = translations[lang].hero;
   return (
-    <div className="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-4 overflow-hidden pt-20">
-      {/* Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 pointer-events-none" />
+    <div className="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-4 overflow-hidden pt-32">
+      {/* Dots Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:20px_20px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
 
-      {/* Decorative Blur */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none animate-pulse-fast" />
+      {/* Particle Sphere Effect */}
+      <ParticleSphere />
 
-      <div className="relative z-10 max-w-5xl mx-auto space-y-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-indigo-500/30 text-indigo-400 text-xs font-mono mb-4 animate-fade-in shadow-[0_0_15px_rgba(79,70,229,0.2)]">
+      {/* Decorative Blur - Subtler for light mode */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange-100/40 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="relative z-10 w-full max-w-7xl mx-auto space-y-8">
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-50 border border-orange-200 text-orange-600 text-xs font-mono mb-6 animate-fade-in">
           <Terminal size={12} />
           {t.badge}
         </div>
 
-        <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-200 to-slate-500 leading-tight">
-          H LABS OS
+        {/* Title */}
+        <h1 className="text-5xl md:text-7xl font-sans font-normal tracking-tight text-slate-900 leading-tight whitespace-nowrap">
+          AI + Web3 Growth Engine
         </h1>
 
-        <p className="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto leading-relaxed font-light">
+        {/* Subtitle - Elegant Italic */}
+        <p className="text-3xl md:text-4xl font-serif italic text-slate-500 max-w-3xl mx-auto leading-relaxed">
           {t.subtitle}
         </p>
 
+        {/* CTA Buttons */}
         <div className="flex flex-col md:flex-row gap-4 justify-center items-center mt-12">
           <button
             onClick={onEnter}
-            className="group relative px-10 py-4 bg-indigo-600 text-white font-bold rounded-sm hover:bg-indigo-500 transition-all flex items-center gap-3 shadow-[0_0_30px_rgba(79,70,229,0.4)]"
+            className="group relative px-10 py-4 bg-orange-600 text-white font-medium rounded-sm hover:bg-orange-700 transition-all flex items-center gap-2 shadow-lg shadow-orange-500/20"
           >
             {t.cta1}
             <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </button>
-          <button className="px-10 py-4 bg-slate-900/50 border border-slate-700 text-white font-medium rounded-sm hover:bg-slate-800 transition-all flex items-center gap-2 backdrop-blur-sm">
-            {t.cta2}
-            <FileText size={20} className="text-slate-400" />
-          </button>
         </div>
 
         {/* Stats Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-16 mt-8 border-t border-slate-800/50 w-full max-w-4xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 pt-20 mt-12 w-full max-w-5xl mx-auto">
           {[
             { label: t.stats.users, value: "12,500+" },
             { label: t.stats.tvl, value: "$240M+" },
             { label: t.stats.tasks, value: "450K+" },
             { label: t.stats.partners, value: "400+" },
           ].map((stat, i) => (
-            <div key={i} className="flex flex-col items-center">
-              <span className="text-2xl md:text-3xl font-bold text-white font-mono">{stat.value}</span>
-              <span className="text-xs text-slate-500 uppercase tracking-wider mt-1">{stat.label}</span>
+            <div key={i} className="flex flex-col items-center gap-1 group cursor-default">
+              <span className="text-3xl md:text-4xl font-bold text-slate-900 font-sans tracking-tight group-hover:text-orange-600 transition-colors">{stat.value}</span>
+              <span className="text-xs text-slate-400 font-bold uppercase tracking-widest font-sans">{stat.label}</span>
             </div>
           ))}
         </div>
@@ -261,26 +268,26 @@ const LandingHero = ({ onEnter, lang }: { onEnter: () => void, lang: Language })
 const ServicesSection = ({ lang }: { lang: Language }) => {
   const t = translations[lang].services_section;
   return (
-    <div className="py-24 bg-[#050b1d] border-t border-slate-900 relative overflow-hidden">
+    <div className="py-24 bg-slate-50 border-t border-slate-100 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h3 className="text-indigo-500 font-mono text-sm uppercase tracking-widest mb-2">{t.subtitle}</h3>
-          <h2 className="text-3xl md:text-4xl font-bold text-white">{t.title}</h2>
+          <h3 className="text-orange-600 font-bold text-sm uppercase tracking-widest mb-2">{t.subtitle}</h3>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900">{t.title}</h2>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {/* Tech Empowerment */}
-          <div className="bg-slate-900/40 border border-slate-800 p-8 rounded-xl hover:border-blue-500/40 transition-all duration-300 group">
-            <div className="w-14 h-14 bg-blue-900/20 rounded-lg flex items-center justify-center text-blue-400 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+          <div className="bg-white border border-slate-200 p-8 rounded-xl hover:border-blue-500/40 hover:shadow-xl transition-all duration-300 group">
+            <div className="w-14 h-14 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
               <Cpu size={32} />
             </div>
-            <h3 className="text-2xl font-bold text-white mb-4">{t.tech.title}</h3>
-            <p className="text-slate-400 mb-6 leading-relaxed text-sm">
+            <h3 className="text-2xl font-bold text-slate-900 mb-4">{t.tech.title}</h3>
+            <p className="text-slate-500 mb-6 leading-relaxed text-sm">
               {t.tech.desc}
             </p>
             <div className="flex flex-wrap gap-2">
               {t.tech.tags.map((tag, i) => (
-                <span key={i} className="text-xs font-mono px-2 py-1 rounded bg-slate-950 text-slate-400 border border-slate-800">
+                <span key={i} className="text-xs font-bold px-3 py-1.5 rounded bg-slate-50 text-slate-600 border border-slate-200">
                   {tag}
                 </span>
               ))}
@@ -288,17 +295,17 @@ const ServicesSection = ({ lang }: { lang: Language }) => {
           </div>
 
           {/* Brand Planning */}
-          <div className="bg-slate-900/40 border border-slate-800 p-8 rounded-xl hover:border-purple-500/40 transition-all duration-300 group">
-            <div className="w-14 h-14 bg-purple-900/20 rounded-lg flex items-center justify-center text-purple-400 mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+          <div className="bg-white border border-slate-200 p-8 rounded-xl hover:border-purple-500/40 hover:shadow-xl transition-all duration-300 group">
+            <div className="w-14 h-14 bg-purple-50 rounded-lg flex items-center justify-center text-purple-600 mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors">
               <Lightbulb size={32} />
             </div>
-            <h3 className="text-2xl font-bold text-white mb-4">{t.brand.title}</h3>
-            <p className="text-slate-400 mb-6 leading-relaxed text-sm">
+            <h3 className="text-2xl font-bold text-slate-900 mb-4">{t.brand.title}</h3>
+            <p className="text-slate-500 mb-6 leading-relaxed text-sm">
               {t.brand.desc}
             </p>
             <div className="flex flex-wrap gap-2">
               {t.brand.tags.map((tag, i) => (
-                <span key={i} className="text-xs font-mono px-2 py-1 rounded bg-slate-950 text-slate-400 border border-slate-800">
+                <span key={i} className="text-xs font-bold px-3 py-1.5 rounded bg-slate-50 text-slate-600 border border-slate-200">
                   {tag}
                 </span>
               ))}
@@ -306,17 +313,17 @@ const ServicesSection = ({ lang }: { lang: Language }) => {
           </div>
 
           {/* Media Operations */}
-          <div className="bg-slate-900/40 border border-slate-800 p-8 rounded-xl hover:border-orange-500/40 transition-all duration-300 group">
-            <div className="w-14 h-14 bg-orange-900/20 rounded-lg flex items-center justify-center text-orange-400 mb-6 group-hover:bg-orange-600 group-hover:text-white transition-colors">
+          <div className="bg-white border border-slate-200 p-8 rounded-xl hover:border-orange-500/40 hover:shadow-xl transition-all duration-300 group">
+            <div className="w-14 h-14 bg-orange-50 rounded-lg flex items-center justify-center text-orange-600 mb-6 group-hover:bg-orange-600 group-hover:text-white transition-colors">
               <Megaphone size={32} />
             </div>
-            <h3 className="text-2xl font-bold text-white mb-4">{t.media.title}</h3>
-            <p className="text-slate-400 mb-6 leading-relaxed text-sm">
+            <h3 className="text-2xl font-bold text-slate-900 mb-4">{t.media.title}</h3>
+            <p className="text-slate-500 mb-6 leading-relaxed text-sm">
               {t.media.desc}
             </p>
             <div className="flex flex-wrap gap-2">
               {t.media.tags.map((tag, i) => (
-                <span key={i} className="text-xs font-mono px-2 py-1 rounded bg-slate-950 text-slate-400 border border-slate-800">
+                <span key={i} className="text-xs font-bold px-3 py-1.5 rounded bg-slate-50 text-slate-600 border border-slate-200">
                   {tag}
                 </span>
               ))}
@@ -343,19 +350,19 @@ const TechSupportSection = ({ lang }: { lang: Language }) => {
 
   const getColorClasses = (color: string) => {
     const colorMap: { [key: string]: { bg: string, border: string, text: string } } = {
-      'blue': { bg: 'bg-blue-900/20', border: 'border-blue-500/30', text: 'text-blue-400' },
-      'emerald': { bg: 'bg-emerald-900/20', border: 'border-emerald-500/30', text: 'text-emerald-400' },
-      'orange': { bg: 'bg-orange-900/20', border: 'border-orange-500/30', text: 'text-orange-400' }
+      'blue': { bg: 'bg-blue-50', border: 'border-blue-100', text: 'text-blue-600' },
+      'emerald': { bg: 'bg-emerald-50', border: 'border-emerald-100', text: 'text-emerald-600' },
+      'orange': { bg: 'bg-orange-50', border: 'border-orange-100', text: 'text-orange-600' }
     };
     return colorMap[color] || colorMap['blue'];
   };
 
   return (
-    <div className="py-24 bg-slate-950 border-t border-slate-900 relative overflow-hidden">
+    <div className="py-24 bg-white border-t border-slate-100 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">{t.title}</h2>
-          <p className="text-slate-400 text-sm">{t.subtitle}</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">{t.title}</h2>
+          <p className="text-slate-500 text-sm">{t.subtitle}</p>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
           {techSupportCategories.map((category) => {
@@ -365,15 +372,15 @@ const TechSupportSection = ({ lang }: { lang: Language }) => {
             const desc = lang === 'zh' ? category.desc_zh : category.desc_en;
             const items = lang === 'zh' ? category.items_zh : category.items_en;
             return (
-              <div key={category.id} className="bg-slate-900/40 border border-slate-800 p-6 rounded-xl hover:border-opacity-60 transition-all duration-300 group">
+              <div key={category.id} className="bg-white border border-slate-200 p-6 rounded-xl hover:shadow-xl transition-all duration-300 group shadow-sm">
                 <div className={`w-12 h-12 ${colors.bg} rounded-lg flex items-center justify-center ${colors.text} mb-6 group-hover:bg-opacity-80 transition-colors border ${colors.border}`}>
                   <Icon size={24} />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-                <p className="text-slate-400 mb-5 leading-relaxed text-sm">{desc}</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">{title}</h3>
+                <p className="text-slate-500 mb-5 leading-relaxed text-sm">{desc}</p>
                 <div className="space-y-2">
                   {items.map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-sm text-slate-300">
+                    <div key={idx} className="flex items-center gap-2 text-sm text-slate-600">
                       <Check size={14} className={colors.text} />
                       <span>{item}</span>
                     </div>
@@ -403,19 +410,19 @@ const MediaInfluenceSection = ({ lang }: { lang: Language }) => {
 
   const getColorClasses = (color: string) => {
     const colorMap: { [key: string]: { bg: string, text: string } } = {
-      'sky': { bg: 'bg-sky-900/20', text: 'text-sky-400' },
-      'purple': { bg: 'bg-purple-900/20', text: 'text-purple-400' },
-      'amber': { bg: 'bg-amber-900/20', text: 'text-amber-400' }
+      'sky': { bg: 'bg-sky-50', text: 'text-sky-600' },
+      'purple': { bg: 'bg-purple-50', text: 'text-purple-600' },
+      'amber': { bg: 'bg-amber-50', text: 'text-amber-600' }
     };
     return colorMap[color] || colorMap['sky'];
   };
 
   return (
-    <div className="py-24 bg-[#020617] border-t border-slate-900 relative overflow-hidden">
+    <div className="py-24 bg-slate-50 border-t border-slate-100 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">{t.title}</h2>
-          <p className="text-slate-400 text-sm max-w-2xl mx-auto">{t.subtitle}</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">{t.title}</h2>
+          <p className="text-slate-500 text-sm max-w-2xl mx-auto">{t.subtitle}</p>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
           {mediaInfluenceCategories.map((category) => {
@@ -424,12 +431,12 @@ const MediaInfluenceSection = ({ lang }: { lang: Language }) => {
             const title = lang === 'zh' ? category.title_zh : category.title_en;
             const desc = lang === 'zh' ? category.desc_zh : category.desc_en;
             return (
-              <div key={category.id} className="bg-slate-900/40 border border-slate-800 p-6 rounded-xl hover:border-slate-700 transition-all duration-300 group">
+              <div key={category.id} className="bg-white border border-slate-200 p-6 rounded-xl hover:shadow-xl transition-all duration-300 group shadow-sm">
                 <div className={`w-12 h-12 ${colors.bg} rounded-lg flex items-center justify-center ${colors.text} mb-4`}>
                   <Icon size={24} />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-3">{title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">{desc}</p>
+                <h3 className="text-lg font-bold text-slate-900 mb-3">{title}</h3>
+                <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
               </div>
             );
           })}
@@ -445,30 +452,30 @@ const FeatureSectionRight = ({
 }: {
   title: string, subtitle: string, desc: string, tags: string[], color: string, icon: any, illustration: React.ReactNode
 }) => (
-  <div className="py-24 relative overflow-hidden border-t border-slate-900 bg-slate-950">
-    <div className={`absolute top-0 right-0 w-[500px] h-[500px] bg-${color}-900/10 rounded-full blur-[100px] pointer-events-none`} />
+  <div className="py-24 relative overflow-hidden border-t border-slate-100 bg-white">
+    <div className={`absolute top-0 right-0 w-[500px] h-[500px] bg-${color}-50 rounded-full blur-[100px] pointer-events-none`} />
     <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
       <div className="space-y-8">
-        <div className={`inline-flex items-center justify-center p-3 bg-${color}-500/10 rounded-xl`}>
-          <Icon size={32} className={`text-${color}-500`} />
+        <div className={`inline-flex items-center justify-center p-3 bg-${color}-50 rounded-xl`}>
+          <Icon size={32} className={`text-${color}-600`} />
         </div>
         <div>
-          <h3 className={`text-${color}-500 font-mono text-sm uppercase tracking-widest mb-2`}>{subtitle}</h3>
-          <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">{title}</h2>
+          <h3 className={`text-${color}-600 font-bold text-sm uppercase tracking-widest mb-2`}>{subtitle}</h3>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">{title}</h2>
         </div>
-        <p className="text-slate-400 text-lg leading-relaxed">
+        <p className="text-slate-500 text-lg leading-relaxed">
           {desc}
         </p>
         <div className="flex flex-wrap gap-3">
           {tags.map((tag, i) => (
-            <span key={i} className={`px-3 py-1 bg-slate-900 border border-slate-800 rounded-full text-xs text-slate-300 font-mono`}>
+            <span key={i} className={`px-3 py-1 bg-slate-50 border border-slate-200 rounded-full text-xs text-slate-600 font-bold`}>
               {tag}
             </span>
           ))}
         </div>
       </div>
       <div className="relative">
-        <div className={`absolute inset-0 bg-gradient-to-r from-${color}-500/20 to-transparent blur-3xl -z-10`} />
+        <div className={`absolute inset-0 bg-gradient-to-r from-${color}-100/40 to-transparent blur-3xl -z-10`} />
         {illustration}
       </div>
     </div>
@@ -481,27 +488,27 @@ const FeatureSectionLeft = ({
 }: {
   title: string, subtitle: string, desc: string, tags: string[], color: string, icon: any, illustration: React.ReactNode
 }) => (
-  <div className="py-24 relative overflow-hidden border-t border-slate-900 bg-[#020617]">
-    <div className={`absolute top-0 left-0 w-[500px] h-[500px] bg-${color}-900/10 rounded-full blur-[100px] pointer-events-none`} />
+  <div className="py-24 relative overflow-hidden border-t border-slate-100 bg-slate-50">
+    <div className={`absolute top-0 left-0 w-[500px] h-[500px] bg-${color}-50 rounded-full blur-[100px] pointer-events-none`} />
     <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
       <div className="order-2 lg:order-1 relative">
-        <div className={`absolute inset-0 bg-gradient-to-l from-${color}-500/20 to-transparent blur-3xl -z-10`} />
+        <div className={`absolute inset-0 bg-gradient-to-l from-${color}-100/40 to-transparent blur-3xl -z-10`} />
         {illustration}
       </div>
       <div className="order-1 lg:order-2 space-y-8">
-        <div className={`inline-flex items-center justify-center p-3 bg-${color}-500/10 rounded-xl`}>
-          <Icon size={32} className={`text-${color}-500`} />
+        <div className={`inline-flex items-center justify-center p-3 bg-${color}-50 rounded-xl`}>
+          <Icon size={32} className={`text-${color}-600`} />
         </div>
         <div>
-          <h3 className={`text-${color}-500 font-mono text-sm uppercase tracking-widest mb-2`}>{subtitle}</h3>
-          <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">{title}</h2>
+          <h3 className={`text-${color}-600 font-bold text-sm uppercase tracking-widest mb-2`}>{subtitle}</h3>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">{title}</h2>
         </div>
-        <p className="text-slate-400 text-lg leading-relaxed">
+        <p className="text-slate-500 text-lg leading-relaxed">
           {desc}
         </p>
         <div className="flex flex-wrap gap-3">
           {tags.map((tag, i) => (
-            <span key={i} className={`px-3 py-1 bg-slate-900 border border-slate-800 rounded-full text-xs text-slate-300 font-mono`}>
+            <span key={i} className={`px-3 py-1 bg-slate-50 border border-slate-200 rounded-full text-xs text-slate-600 font-bold`}>
               {tag}
             </span>
           ))}
@@ -514,26 +521,26 @@ const FeatureSectionLeft = ({
 // --- MODULE VISUALIZATIONS ---
 
 const WarRoomVisual = () => (
-  <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-2xl relative overflow-hidden">
-    <div className="flex justify-between items-center mb-6 border-b border-slate-800 pb-4">
+  <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-2xl relative overflow-hidden">
+    <div className="flex justify-between items-center mb-6 border-b border-slate-100 pb-4">
       <div className="flex items-center gap-2">
         <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse" />
-        <span className="text-white font-mono text-sm">LIVE FEED</span>
+        <span className="text-slate-900 font-bold text-sm">LIVE FEED</span>
       </div>
-      <span className="text-slate-500 font-mono text-xs">ETH-USDT PERP</span>
+      <span className="text-slate-400 font-bold text-xs">ETH-USDT PERP</span>
     </div>
     <div className="space-y-4">
       {[1, 2, 3].map((i) => (
-        <div key={i} className="flex items-center gap-4 p-3 bg-slate-950/50 rounded-lg border border-slate-800/50">
-          <div className="w-10 h-10 bg-slate-800 rounded flex items-center justify-center text-slate-400">
+        <div key={i} className="flex items-center gap-4 p-3 bg-slate-50 rounded-lg border border-slate-100">
+          <div className="w-10 h-10 bg-white border border-slate-200 rounded flex items-center justify-center text-slate-400">
             {i === 1 ? <Activity size={20} /> : i === 2 ? <Target size={20} /> : <TrendingUp size={20} />}
           </div>
           <div className="flex-1">
-            <div className="h-2 bg-slate-800 rounded w-3/4 mb-2" />
-            <div className="h-2 bg-slate-800 rounded w-1/2" />
+            <div className="h-2 bg-slate-200 rounded w-3/4 mb-2" />
+            <div className="h-2 bg-slate-200 rounded w-1/2" />
           </div>
           <div className="text-right">
-            <div className={`text-xs font-mono px-2 py-1 rounded ${i === 1 ? 'bg-green-900/30 text-green-400' : 'bg-red-900/30 text-red-400'}`}>
+            <div className={`text-xs font-bold px-2 py-1 rounded ${i === 1 ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>
               {i === 1 ? 'BUY' : 'HIGH'}
             </div>
           </div>
@@ -541,9 +548,9 @@ const WarRoomVisual = () => (
       ))}
     </div>
     {/* Floating overlay */}
-    <div className="absolute bottom-6 right-6 bg-slate-800/90 backdrop-blur border border-slate-700 p-4 rounded-lg shadow-xl">
-      <div className="text-xs text-slate-400 mb-1">Sentiment</div>
-      <div className="text-2xl font-bold text-green-400 flex items-center gap-2">
+    <div className="absolute bottom-6 right-6 bg-white/90 backdrop-blur border border-slate-200 p-4 rounded-lg shadow-xl">
+      <div className="text-xs text-slate-500 mb-1">Sentiment</div>
+      <div className="text-2xl font-bold text-green-600 flex items-center gap-2">
         Bullish <TrendingUp size={20} />
       </div>
     </div>
@@ -551,26 +558,26 @@ const WarRoomVisual = () => (
 );
 
 const KolVisual = () => (
-  <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-2xl relative">
+  <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-2xl relative">
     <div className="grid grid-cols-2 gap-4 mb-4">
-      <div className="bg-slate-950 p-4 rounded-lg border border-slate-800 flex flex-col items-center">
-        <Users size={24} className="text-purple-500 mb-2" />
-        <span className="text-2xl font-bold text-white">125K</span>
+      <div className="bg-slate-50 p-4 rounded-lg border border-slate-100 flex flex-col items-center">
+        <Users size={24} className="text-purple-600 mb-2" />
+        <span className="text-2xl font-bold text-slate-900">125K</span>
         <span className="text-xs text-slate-500">Followers</span>
       </div>
-      <div className="bg-slate-950 p-4 rounded-lg border border-slate-800 flex flex-col items-center">
-        <Eye size={24} className="text-purple-500 mb-2" />
-        <span className="text-2xl font-bold text-white">2.4M</span>
+      <div className="bg-slate-50 p-4 rounded-lg border border-slate-100 flex flex-col items-center">
+        <Eye size={24} className="text-purple-600 mb-2" />
+        <span className="text-2xl font-bold text-slate-900">2.4M</span>
         <span className="text-xs text-slate-500">Impressions</span>
       </div>
     </div>
-    <div className="bg-gradient-to-r from-purple-900/20 to-indigo-900/20 p-4 rounded-lg border border-purple-500/20 text-center">
-      <div className="text-sm text-purple-300 font-bold mb-2">H-CLUB STATUS</div>
-      <div className="text-3xl font-bold text-white tracking-widest">ELITE</div>
+    <div className="bg-gradient-to-r from-purple-100 to-indigo-100 p-4 rounded-lg border border-purple-200 text-center">
+      <div className="text-sm text-purple-600 font-bold mb-2">H-CLUB STATUS</div>
+      <div className="text-3xl font-bold text-purple-900 tracking-widest">ELITE</div>
     </div>
     <div className="mt-4 flex justify-center gap-[-10px]">
       {[1, 2, 3, 4].map(i => (
-        <div key={i} className="w-10 h-10 rounded-full bg-slate-800 border-2 border-slate-900 -ml-2 first:ml-0 relative z-10 flex items-center justify-center text-xs text-slate-400">
+        <div key={i} className="w-10 h-10 rounded-full bg-slate-100 border-2 border-white -ml-2 first:ml-0 relative z-10 flex items-center justify-center text-xs text-slate-500 shadow-sm">
           {i}
         </div>
       ))}
@@ -579,31 +586,31 @@ const KolVisual = () => (
 );
 
 const BountyVisual = () => (
-  <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-2xl">
+  <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-2xl">
     <div className="space-y-3">
-      <div className="p-4 bg-gradient-to-r from-emerald-900/20 to-transparent border border-emerald-900/30 rounded-lg flex justify-between items-center">
+      <div className="p-4 bg-gradient-to-r from-emerald-50 to-transparent border border-emerald-100 rounded-lg flex justify-between items-center">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-emerald-900/30 rounded flex items-center justify-center text-emerald-400">
+          <div className="w-10 h-10 bg-emerald-100/50 rounded flex items-center justify-center text-emerald-600">
             <Coins size={20} />
           </div>
           <div>
-            <div className="text-white font-bold">Airdrop Task #102</div>
-            <div className="text-xs text-emerald-400">ZkSync Era</div>
+            <div className="text-slate-900 font-bold">Airdrop Task #102</div>
+            <div className="text-xs text-emerald-600">ZkSync Era</div>
           </div>
         </div>
-        <div className="text-white font-mono font-bold">$500+</div>
+        <div className="text-slate-900 font-mono font-bold">$500+</div>
       </div>
-      <div className="p-4 bg-slate-950/50 border border-slate-800 rounded-lg flex justify-between items-center opacity-60">
+      <div className="p-4 bg-slate-50 border border-slate-100 rounded-lg flex justify-between items-center opacity-70">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-slate-800 rounded flex items-center justify-center text-slate-400">
+          <div className="w-10 h-10 bg-white border border-slate-200 rounded flex items-center justify-center text-slate-400">
             <Target size={20} />
           </div>
           <div>
-            <div className="text-white font-bold">CEX Campaign</div>
-            <div className="text-xs text-slate-400">Binance</div>
+            <div className="text-slate-900 font-bold">CEX Campaign</div>
+            <div className="text-xs text-slate-500">Binance</div>
           </div>
         </div>
-        <div className="text-white font-mono font-bold">$50</div>
+        <div className="text-slate-900 font-mono font-bold">$50</div>
       </div>
     </div>
     <div className="mt-6">
@@ -611,7 +618,7 @@ const BountyVisual = () => (
         <span>Task Progress</span>
         <span>85%</span>
       </div>
-      <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+      <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
         <div className="h-full bg-emerald-500 w-[85%]" />
       </div>
     </div>
@@ -619,26 +626,26 @@ const BountyVisual = () => (
 );
 
 const AcademyVisual = () => (
-  <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-2xl relative">
+  <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-2xl relative">
     <div className="absolute top-4 right-4 text-blue-500">
       <BookOpen size={24} />
     </div>
     <div className="space-y-6">
       <div>
         <h4 className="text-slate-400 text-xs uppercase mb-2">Current Course</h4>
-        <h3 className="text-xl font-bold text-white">DeFi Advanced Strategies</h3>
+        <h3 className="text-xl font-bold text-slate-900">DeFi Advanced Strategies</h3>
       </div>
       <div className="grid grid-cols-2 gap-3">
         {[1, 2, 3, 4].map(i => (
-          <div key={i} className="bg-slate-950 p-3 rounded border border-slate-800 flex flex-col gap-2">
-            <div className="w-8 h-8 bg-blue-900/20 rounded flex items-center justify-center text-blue-400">
+          <div key={i} className="bg-slate-50 p-3 rounded border border-slate-100 flex flex-col gap-2">
+            <div className="w-8 h-8 bg-blue-50 rounded flex items-center justify-center text-blue-500">
               {i === 1 ? <ShieldCheck size={16} /> : <FileText size={16} />}
             </div>
-            <div className="h-1.5 bg-slate-800 rounded w-2/3" />
+            <div className="h-1.5 bg-slate-200 rounded w-2/3" />
           </div>
         ))}
       </div>
-      <button className="w-full py-2 bg-blue-600/20 text-blue-400 border border-blue-600/30 rounded font-mono text-sm">
+      <button className="w-full py-2 bg-blue-50 text-blue-600 border border-blue-100 rounded font-bold text-sm hover:bg-blue-100 transition-colors">
         Resume Learning
       </button>
     </div>
@@ -646,18 +653,18 @@ const AcademyVisual = () => (
 );
 
 const FundVisual = () => (
-  <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-2xl flex flex-col items-center justify-center relative min-h-[250px]">
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-900/10 to-transparent pointer-events-none" />
+  <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-2xl flex flex-col items-center justify-center relative min-h-[250px]">
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-50 to-transparent pointer-events-none" />
     <PieChart size={64} className="text-yellow-500 mb-4" />
-    <h3 className="text-2xl font-bold text-white mb-1">$120M+</h3>
-    <p className="text-slate-400 text-sm mb-6">Assets Under Management</p>
+    <h3 className="text-2xl font-bold text-slate-900 mb-1">$120M+</h3>
+    <p className="text-slate-500 text-sm mb-6">Assets Under Management</p>
 
     <div className="flex gap-4 w-full px-4">
-      <div className="flex-1 bg-slate-950 p-2 rounded text-center border border-slate-800">
+      <div className="flex-1 bg-slate-50 p-2 rounded text-center border border-slate-100">
         <div className="text-yellow-500 font-bold">35+</div>
         <div className="text-[10px] text-slate-500">Portfolio</div>
       </div>
-      <div className="flex-1 bg-slate-950 p-2 rounded text-center border border-slate-800">
+      <div className="flex-1 bg-slate-50 p-2 rounded text-center border border-slate-100">
         <div className="text-green-500 font-bold">12x</div>
         <div className="text-[10px] text-slate-500">Avg ROI</div>
       </div>
@@ -670,30 +677,30 @@ const FundVisual = () => (
 const PartnersAndMedia = ({ lang }: { lang: Language }) => {
   const t = translations[lang].partners;
   return (
-    <div className="py-24 border-t border-slate-900 bg-[#020617]">
+    <div className="py-24 border-t border-slate-100 bg-slate-50">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Strategic Partners */}
         <div className="mb-20 text-center">
-          <h3 className="text-indigo-500 font-bold mb-2">{t.subtitle}</h3>
-          <h2 className="text-3xl font-bold text-white mb-12">{t.title}</h2>
+          <h3 className="text-orange-600 font-bold mb-2">{t.subtitle}</h3>
+          <h2 className="text-3xl font-bold text-slate-900 mb-12">{t.title}</h2>
           <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
             {strategicPartners.map((partner, i) => (
               <div key={i} className="group flex items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer">
                 <img
                   src={partner.logo}
                   alt={partner.name}
-                  className="h-8 md:h-10 w-auto object-contain opacity-50 group-hover:opacity-100 transition-all duration-300"
+                  className="h-8 md:h-10 w-auto object-contain opacity-40 group-hover:opacity-100 transition-all duration-300"
                   style={{
-                    filter: 'grayscale(100%) brightness(0.8)',
+                    filter: 'grayscale(100%)',
                     maxWidth: '140px'
                   }}
                   title={partner.name}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.filter = 'grayscale(0%) brightness(1)';
+                    e.currentTarget.style.filter = 'grayscale(0%)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.filter = 'grayscale(100%) brightness(0.8)';
+                    e.currentTarget.style.filter = 'grayscale(100%)';
                   }}
                 />
               </div>
@@ -702,25 +709,25 @@ const PartnersAndMedia = ({ lang }: { lang: Language }) => {
         </div>
 
         {/* Media Partners */}
-        <div className="text-center pt-12 border-t border-slate-800/50">
-          <h2 className="text-2xl font-bold text-white mb-10">{t.media_title}</h2>
+        <div className="text-center pt-12 border-t border-slate-200">
+          <h2 className="text-2xl font-bold text-slate-900 mb-10">{t.media_title}</h2>
           <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
             {mediaPartners.map((media, i) => (
               <div key={i} className="group flex items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer">
                 <img
                   src={media.logo}
                   alt={media.name}
-                  className="h-6 md:h-8 w-auto object-contain opacity-50 group-hover:opacity-100 transition-all duration-300"
+                  className="h-6 md:h-8 w-auto object-contain opacity-40 group-hover:opacity-100 transition-all duration-300"
                   style={{
-                    filter: 'grayscale(100%) brightness(0.8)',
+                    filter: 'grayscale(100%)',
                     maxWidth: '120px'
                   }}
                   title={media.name}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.filter = 'grayscale(0%) brightness(1)';
+                    e.currentTarget.style.filter = 'grayscale(0%)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.filter = 'grayscale(100%) brightness(0.8)';
+                    e.currentTarget.style.filter = 'grayscale(100%)';
                   }}
                 />
               </div>
@@ -735,13 +742,13 @@ const PartnersAndMedia = ({ lang }: { lang: Language }) => {
 const LandingFooter = ({ lang }: { lang: Language }) => {
   const t = translations[lang].footer;
   return (
-    <footer className="bg-slate-950 py-12 border-t border-slate-900 text-center">
-      <div className="flex justify-center gap-6 mb-8 text-slate-400 text-sm">
+    <footer className="bg-white py-12 border-t border-slate-100 text-center">
+      <div className="flex justify-center gap-8 mb-8 text-slate-500 text-sm font-medium">
         {t.links.map((link, i) => (
-          <a key={i} href="#" className="hover:text-white transition-colors">{link}</a>
+          <a key={i} href="#" className="hover:text-slate-900 transition-colors">{link}</a>
         ))}
       </div>
-      <p className="text-slate-600 text-xs">{t.rights}</p>
+      <p className="text-slate-400 text-xs">{t.rights}</p>
     </footer>
   );
 };
@@ -757,28 +764,27 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-200 font-sans selection:bg-indigo-500/30">
+    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-orange-200">
       <div className="animate-in fade-in zoom-in-95 duration-700">
-        <nav className="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-slate-950/80 backdrop-blur-md border-b border-white/5">
+        <nav className="fixed top-0 w-full z-50 px-8 py-5 flex justify-between items-center bg-white/80 backdrop-blur-md border-b border-slate-100 transition-all">
           <div className="flex items-center gap-2">
-            <img src="/Hlabs-logo.png" alt="H Labs Logo" className="w-8 h-8 rounded-sm object-cover shadow-[0_0_15px_rgba(79,70,229,0.5)]" />
-            <span className="font-bold text-lg tracking-tight">H Labs</span>
+            <div className="w-8 h-8 rounded-sm bg-orange-600 flex items-center justify-center text-white font-bold text-xl">H</div>
+            <span className="font-bold text-lg tracking-tight text-slate-900">LABS</span>
           </div>
 
-          <div className="flex items-center gap-6">
-            <div className="hidden md:flex gap-6 text-sm font-medium text-slate-400">
-              <a href="#" className="hover:text-white transition-colors">{translations[lang].nav.services}</a>
-              <a href="#" className="hover:text-white transition-colors">{translations[lang].nav.partners}</a>
+          <div className="flex items-center gap-8">
+            <div className="hidden md:flex gap-8 text-sm font-semibold text-slate-600">
+              <a href="#" className="hover:text-slate-900 transition-colors">{translations[lang].nav.services}</a>
+              <a href="#" className="hover:text-slate-900 transition-colors">{translations[lang].nav.partners}</a>
             </div>
 
             {/* Language Switcher */}
-            <div className="flex items-center gap-2 text-xs font-mono border border-slate-800 rounded px-2 py-1">
-              <button onClick={() => setLang('en')} className={`${lang === 'en' ? 'text-white font-bold' : 'text-slate-500 hover:text-slate-300'}`}>EN</button>
-              <span className="text-slate-700">|</span>
-              <button onClick={() => setLang('zh')} className={`${lang === 'zh' ? 'text-white font-bold' : 'text-slate-500 hover:text-slate-300'}`}>中文</button>
+            <div className="flex items-center gap-3 text-xs font-bold text-slate-400">
+              <button onClick={() => setLang('en')} className={`${lang === 'en' ? 'text-slate-900' : 'hover:text-slate-600'}`}>EN</button>
+              <button onClick={() => setLang('zh')} className={`${lang === 'zh' ? 'text-slate-900' : 'hover:text-slate-600'}`}>中文</button>
             </div>
 
-            <button onClick={handleLaunchTerminal} className="text-sm font-medium text-white hover:text-indigo-400 transition-colors">
+            <button onClick={handleLaunchTerminal} className="px-6 py-2.5 bg-slate-900 text-white font-bold text-sm rounded hover:bg-slate-800 transition-colors shadow-lg shadow-slate-900/20">
               {translations[lang].nav.login}
             </button>
           </div>
